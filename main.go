@@ -17,12 +17,13 @@ import (
 const address = "0x325E343f1dE602396E256B67eFd1F61C3A6B38Bd"
 
 func main() {
-	cl := pclient.Client{http.DefaultClient}
-	resp, err := cl.Time()
+	cl := pclient.Client{&http.Client{}}
+	p1, p2, err := cl.UpdatedPrice("XLM", "USDT")
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(resp)
+	fmt.Println(p1)
+	fmt.Println(p2)
 	/*
 		client, err := ethclient.Dial("https://bsc-dataseed.binance.org/")
 		if err != nil {
