@@ -1,7 +1,6 @@
 package bscdex
 
 import (
-	"fmt"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
@@ -55,7 +54,6 @@ func (dex *BSCDEX) ID() string {
 }
 func (dex *BSCDEX) PriceUSD(co coin.Coin) (float64, error) {
 	path := append([]common.Address{co.ContractAddresses[networkID]}, dex.pathToUSDPrice...)
-	fmt.Println(path)
 	result, err := dex.getExchangeAmount(precision, path)
 	if err != nil {
 		return 0, err
